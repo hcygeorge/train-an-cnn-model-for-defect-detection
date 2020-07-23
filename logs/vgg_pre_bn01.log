@@ -1,0 +1,185 @@
+2020-07-21 01:03:38,769 Parameters Setting:
+{'dataset': 'aoi',
+ 'batch_size': 48,
+ 'split': 0.8,
+ 'resume': '',
+ 'pruned': '',
+ 'pretrain': True,
+ 'cfg': [],
+ 'cuda': True,
+ 'workers': 0,
+ 'epochs': 100,
+ 'checkpoint_freq': 5,
+ 'early_stop': False,
+ 'lr': 0.01,
+ 'decay': 1e-05,
+ 'channel_sparsity': False,
+ 'sparsity_rate': 0,
+ 'patience': 8,
+ 'trial': 'vgg_pre_bn01'}
+2020-07-21 01:03:38,978 Data Preprocessing:
+{'train': Compose(
+    RandomHorizontalFlip(p=0.5)
+    RandomRotation(degrees=(-15, 15), resample=False, expand=False)
+    Resize(size=(224, 224), interpolation=PIL.Image.BILINEAR)
+    ToTensor()
+    Normalize(mean=(0.5,), std=(0.5,))
+), 'valid': Compose(
+    Resize(size=(224, 224), interpolation=PIL.Image.BILINEAR)
+    ToTensor()
+    Normalize(mean=(0.5,), std=(0.5,))
+)}
+2020-07-21 01:03:41,975 Model Structure:
+VGG(
+  (feature): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (7): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (8): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (9): ReLU(inplace=True)
+    (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): ReLU(inplace=True)
+    (13): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (14): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (15): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): ReLU(inplace=True)
+    (17): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (18): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (19): ReLU(inplace=True)
+    (20): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (21): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): ReLU(inplace=True)
+    (23): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (24): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (25): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): ReLU(inplace=True)
+    (27): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (28): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (29): ReLU(inplace=True)
+    (30): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (31): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): ReLU(inplace=True)
+    (33): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (34): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (35): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): ReLU(inplace=True)
+    (37): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (38): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (39): ReLU(inplace=True)
+    (40): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (41): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): ReLU(inplace=True)
+  )
+  (classifier): Linear(in_features=25088, out_features=6, bias=True)
+)
+2020-07-21 01:03:42,009 Optimizer:
+SGD (
+Parameter Group 0
+    dampening: 0
+    lr: 0.01
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 1e-05
+)
+2020-07-21 01:03:46,389 Start training model...
+2020-07-21 01:04:23,937 Time of Single Epoch: 37.55 secs
+2020-07-21 01:04:24,053 Epoch:0/99
+Accuracy(Train/Valid):81.40/81.62% Loss(Train/Valid):0.985/1.532
+2020-07-21 01:05:01,589 Epoch:1/99
+Accuracy(Train/Valid):96.14/86.17% Loss(Train/Valid):0.149/0.390
+2020-07-21 01:05:38,062 Epoch:2/99
+Accuracy(Train/Valid):97.13/97.83% Loss(Train/Valid):0.123/0.492
+2020-07-21 01:06:15,929 Epoch:3/99
+Accuracy(Train/Valid):97.92/96.44% Loss(Train/Valid):0.002/0.550
+2020-07-21 01:06:52,429 Epoch:4/99
+Accuracy(Train/Valid):98.81/85.97% Loss(Train/Valid):0.462/1.320
+2020-07-21 01:07:28,616 Epoch:5/99
+Accuracy(Train/Valid):98.32/98.81% Loss(Train/Valid):0.026/0.066
+2020-07-21 01:08:04,557 Epoch:6/99
+Accuracy(Train/Valid):98.96/99.21% Loss(Train/Valid):0.024/0.087
+2020-07-21 01:08:40,749 Epoch:7/99
+Accuracy(Train/Valid):99.16/99.41% Loss(Train/Valid):0.074/0.106
+2020-07-21 01:09:18,182 Epoch:8/99
+Accuracy(Train/Valid):98.52/97.83% Loss(Train/Valid):0.001/0.098
+2020-07-21 01:09:54,593 Epoch:9/99
+Accuracy(Train/Valid):99.26/99.80% Loss(Train/Valid):0.000/0.011
+2020-07-21 01:10:32,052 Epoch:10/99
+Accuracy(Train/Valid):99.80/99.41% Loss(Train/Valid):0.000/0.062
+2020-07-21 01:11:09,009 Epoch:11/99
+Accuracy(Train/Valid):99.70/99.60% Loss(Train/Valid):0.017/0.081
+2020-07-21 01:11:46,307 Epoch:12/99
+Accuracy(Train/Valid):99.90/99.60% Loss(Train/Valid):0.000/0.105
+2020-07-21 01:12:22,723 Epoch:13/99
+Accuracy(Train/Valid):99.95/99.60% Loss(Train/Valid):0.000/0.099
+2020-07-21 01:12:58,607 Epoch:14/99
+Accuracy(Train/Valid):100.00/99.41% Loss(Train/Valid):0.000/0.109
+2020-07-21 01:13:34,397 Epoch:15/99
+Accuracy(Train/Valid):99.85/99.01% Loss(Train/Valid):0.000/0.069
+2020-07-21 01:14:10,392 Epoch:16/99
+Accuracy(Train/Valid):99.80/99.41% Loss(Train/Valid):0.000/0.187
+2020-07-21 01:14:47,208 Epoch:17/99
+Accuracy(Train/Valid):99.95/99.80% Loss(Train/Valid):0.000/0.149
+2020-07-21 01:15:24,804 Epoch:18/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.108
+2020-07-21 01:16:02,741 Epoch:19/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.120
+2020-07-21 01:16:39,527 Epoch:20/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.122
+2020-07-21 01:17:17,251 Epoch:21/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.119
+2020-07-21 01:17:55,653 Epoch:22/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.121
+2020-07-21 01:18:33,634 Epoch:23/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.125
+2020-07-21 01:19:10,971 Epoch:24/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.117
+2020-07-21 01:19:48,415 Epoch:25/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.110
+2020-07-21 01:20:25,398 Epoch:26/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.118
+2020-07-21 01:21:03,474 Epoch:27/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.129
+2020-07-21 01:21:41,155 Epoch:28/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.129
+2020-07-21 01:22:18,537 Epoch:29/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.131
+2020-07-21 01:22:57,079 Epoch:30/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.124
+2020-07-21 01:23:32,689 Epoch:31/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.123
+2020-07-21 01:24:09,055 Epoch:32/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.123
+2020-07-21 01:24:45,662 Epoch:33/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.125
+2020-07-21 01:25:21,999 Epoch:34/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.121
+2020-07-21 01:25:58,668 Epoch:35/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.132
+2020-07-21 01:26:35,859 Epoch:36/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.124
+2020-07-21 01:27:12,675 Epoch:37/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.127
+2020-07-21 01:27:49,347 Epoch:38/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.133
+2020-07-21 01:28:25,957 Epoch:39/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.001/0.127
+2020-07-21 01:29:02,378 Epoch:40/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.126
+2020-07-21 01:29:38,520 Epoch:41/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.128
+2020-07-21 01:30:14,272 Epoch:42/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.127
+2020-07-21 01:30:50,500 Epoch:43/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.123
+2020-07-21 01:31:26,796 Epoch:44/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.123
+2020-07-21 01:32:02,877 Epoch:45/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.128
+2020-07-21 01:32:39,849 Epoch:46/99
+Accuracy(Train/Valid):100.00/99.80% Loss(Train/Valid):0.000/0.131
