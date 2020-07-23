@@ -1,18 +1,14 @@
 #%%
-# Working directory
 import os
 import argparse
 import logging
 import time
 import pickle
-import itertools
 import time
-from collections import Counter, OrderedDict
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import scipy as sp
-import shutil
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -20,9 +16,8 @@ import torch.nn.functional as F
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 from torchvision import models
-import torch.utils.data as Data
 from load_data import CreateList, CustomDataset
-from models import LeNet5, VGG, BCNN
+from models import LeNet5, VGG
 from utils import updateBN, savemodel, Log
 
 #%% Log setting

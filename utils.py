@@ -45,8 +45,7 @@ class Log():
 #         format='%(asctime)s %(message)s',
 #         datefmt='%m-%d %H:%M:%S',
 #         filename='./logs/{}.log'.format(trial_info))
-#%%
-# Sub subgradient descent for L1-norm
+#%% Sub subgradient descent for L1-norm
 def updateBN(model, scale=1e-4, verbose=False, fisrt=1e-4, last=1e-4):
     """Update subgradient descent for L1-norm.
     
@@ -65,7 +64,7 @@ def updateBN(model, scale=1e-4, verbose=False, fisrt=1e-4, last=1e-4):
             else:
                 m.weight.grad.data.add_(scale*torch.sign(m.weight.data))  # L1
 
-#%%
+#%% How and where to save trained model
 def savemodel(state, is_best, freq=10, suffix='', verbose=False):
     serial_number = time.strftime("%m%d")
     checkpoint = './model/checkpoint{}_{:s}.pkl'.format(serial_number, suffix)
@@ -86,4 +85,4 @@ def savemodel(state, is_best, freq=10, suffix='', verbose=False):
         return 'Model saved.'
         # print('Model saved.')
         
-        
+    

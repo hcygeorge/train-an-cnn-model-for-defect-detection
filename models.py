@@ -3,7 +3,7 @@ import torch.nn as nn
 import torchvision
 import math
 import torch.nn.functional as F
-#%%
+#%% Define model structure
 class VGG(nn.Module):
     '''VGG model structure but with only one fully connnected layer.
     
@@ -82,126 +82,7 @@ class VGG(nn.Module):
                 m.bias.data.zero_()
             elif isinstance(m, nn.Linear):
                 m.weight.data.normal_(0, 0.01)
-                m.bias.data.zero_()
-
-
-class BCNN(nn.Module):
-    """Mean field B-CNN model.
-
-    input 3*448*448, output 512*28*28
-    input 3*224*224, output 512*14*14
-
-    Attributes:
-        features: features extractor
-        nodes: number of output channels of features extractor
-        fc: fc
-        relu5_3: activation between features and fc
-    """
-    def __init__(self, num_classes, pretrained=True, cfg=None, bn=True):
-        """Declare all needed layers.
-
-        Args:
-            num_classes, int.
-        """
-        super(BCNN, self).__init__()
-        # define model structure
-        
-        self.out_channel = 512  # feature output channels
-        self.out_size = 14*14  # feature output size
-        
-        if pretrained and bn and not cfg:
-            self.features = torchvision.models.vgg16_bn(pretrained=pretrained).features
-            print('Create pretrained model with BN layer.')
-        elif pretrained and not bn and not cfg:
-            self.features = torchvision.models.vgg16(pretrained=pretrained).features
-            print('Create pretrained model without BN layer.')
-        elif cfg:
-            self.features = self.make_layers(cfg, bn)
-            self.out_channel = cfg[-2]  # feature output channelss
-            print('Create model backbone by cfg.')
-        else:
-            cfg = [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512, 'M']
-            self.features = self.make_layers(cfg, bn)
-            self.out_channel = cfg[-2]  # feature output channels
-            print('Create model backbone of VGG16 structure.')
-            
-
-        self.features = torch.nn.Sequential(*list(self.features.children())[:-2])  # Remove pool5
-        # Mean field pooling layer.
-        self.relu5_3 = torch.nn.ReLU(inplace=False) 
-
-        # Classification layer
-        # print('Last conv layer number of filters: ', self.out_channel)
-        self.classifier = torch.nn.Linear(in_features=self.out_channel**2,
-                                          out_features=num_classes,
-                                          bias=True)
-        if not pretrained:
-            self.apply(BCNN._initParameter)  # initialize model parameters
-            print('Initialize model parameters.')
-
-    def make_layers(self, cfg, batch_norm=False):
-        layers = []
-        in_channels = 3
-        for v in cfg:
-            if v == 'M':
-                layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
-            else:
-                conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=1, bias=True)
-                if batch_norm:
-                    layers += [conv2d, nn.BatchNorm2d(v), nn.ReLU(inplace=True)]
-                    # print('Add batchnorm after conv2d.')
-                else:
-                    layers += [conv2d, nn.ReLU(inplace=True)]
-                in_channels = v
-        return nn.Sequential(*layers)
-
-    def _initParameter(module):
-        """Initialize the weight and bias for each module.
-
-        Args:
-            module, torch.nn.Module.
-        """
-        if isinstance(module, torch.nn.BatchNorm2d):
-            torch.nn.init.constant_(module.weight, val=1.0)
-            torch.nn.init.constant_(module.bias, val=0.0)
-        elif isinstance(module, torch.nn.Conv2d):
-            torch.nn.init.kaiming_normal_(module.weight, a=0, mode='fan_out',
-                                          nonlinearity='relu')
-            if module.bias is not None:
-                torch.nn.init.constant_(module.bias, val=0.0)
-        elif isinstance(module, torch.nn.Linear):
-            if module.bias is not None:
-                torch.nn.init.constant_(module.bias, val=0.0)
-
-    def forward(self, X):
-        """Forward pass of the network.
-
-        Args:
-            X, torch.Tensor (N*3*448*448).
-
-        Returns:
-            score, torch.Tensor (N*200).
-        """
-        # Input
-        N = X.size()[0]  # store batch size
-        X = self.features(X)
-        X = self.relu5_3(X)
-        # print(X.size())
-        # Classical bilinear pooling
-        X = torch.reshape(X, (N, self.out_channel, self.out_size))
-        # print(X.size())
-        X = torch.bmm(X, X.permute(0, 2, 1))  # bilinear pooling
-        X = torch.div(X, self.out_size)    
-        # print('Size of features outer-product: ', X.size())
-        X = torch.reshape(X, (N, self.out_channel**2))
-        # Normalization
-        X = torch.sign(X) * torch.sqrt(torch.abs(X) + 1e-8)
-        X = torch.nn.functional.normalize(X, p=2, dim=1)
-        # Classification
-        # print(X.size())
-        X = self.classifier(X)
-        return X
-    
+                m.bias.data.zero_()    
 
 class LeNet5(nn.Module):
     def __init__(self, dataset):
