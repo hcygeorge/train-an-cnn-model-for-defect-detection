@@ -3,7 +3,9 @@ import torch.nn as nn
 import torchvision
 import math
 import torch.nn.functional as F
+
 #%% Define model structure
+# VGG 
 class VGG(nn.Module):
     '''VGG model structure but with only one fully connnected layer.
     
@@ -83,7 +85,7 @@ class VGG(nn.Module):
             elif isinstance(m, nn.Linear):
                 m.weight.data.normal_(0, 0.01)
                 m.bias.data.zero_()    
-
+# LeNet5 model
 class LeNet5(nn.Module):
     def __init__(self, dataset):
         super(LeNet5, self).__init__()
@@ -124,9 +126,5 @@ if __name__ == '__main__':
     net = LeNet5(dataset='aoi')
     x = torch.FloatTensor(1, 1, 224, 224).cuda()
     nn.AvgPool2d(2)(net.feature(x)).shape  # 512*7*7
-    y = net(x)
-    print(y.data.shape)
-    
-    net.feature.children()
 
     
