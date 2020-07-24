@@ -39,7 +39,7 @@
 
 ## 影像前處理
 
-- 隨機水平翻轉(p=0.5)
+- 影像隨機水平翻轉(p=0.5)
 - 影像隨機旋轉正負 15 度
 - 影像大小縮放成 224 x 224
 
@@ -65,7 +65,7 @@
 
 ## 參考
 
-Aidea平台  
+Aidea-AOI瑕疵分類  
 https://aidea-web.tw/topic/a49e3f76-69c9-4a4a-bcfc-c882840b3f27  
 LeNet5文獻  
 http://yann.lecun.com/exdb/lenet/   
