@@ -66,8 +66,8 @@
 ## 參考
 
 Aidea平台
-https://aidea-web.tw/topic/a49e3f76-69c9-4a4a-bcfc-c882840b3f27
-LeNet5文獻
-http://yann.lecun.com/exdb/lenet/ 
-VGG文獻
-https://arxiv.org/abs/1409.1556
+https://aidea-web.tw/topic/a49e3f76-69c9-4a4a-bcfc-c882840b3f27  
+LeNet5文獻  
+http://yann.lecun.com/exdb/lenet/   
+VGG文獻  
+https://arxiv.org/abs/1409.1556  
