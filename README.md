@@ -6,7 +6,7 @@
 
 ## 影像資料來源
 
-本次影像資料是由**工研院電光所**在Aidea(人工智慧共創平台)釋出作為開放性議題，提供參賽者建立瑕疵辨識模型。但基於保密原則，平台並未透漏影像資料源自何種產線和產品。
+本次影像資料是由工研院電光所在Aidea(人工智慧共創平台)釋出作為開放性議題，提供參賽者建立瑕疵辨識模型。但基於保密原則，平台並未透漏影像資料源自何種產線和產品。
 
 資料來源：https://aidea-web.tw/topic/a49e3f76-69c9-4a4a-bcfc-c882840b3f27
 
@@ -23,7 +23,7 @@
 如下圖所示，除了Normal外，其餘皆屬於瑕疵影像，可觀察到Horizontal Defect外觀與Normal較為接近，可能是相對難以辨識的瑕疵種類。
 
 
-<img src="https://camo.githubusercontent.com/..." data-canonical-src="https://github.com/hcygeorge/aoi_defect_detection/blob/master/aoi_example.png" width="600" height="400" />
+![]("https://github.com/hcygeorge/aoi_defect_detection/blob/master/aoi_example.png" =600x400)
 
 
 
