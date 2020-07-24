@@ -1,9 +1,19 @@
 # AOI影像瑕疵辨識
 
-## 動機與目的
+## 專案介紹
 
-本專案目的為利用AOI影像資料訓練深度學習模型辨識產品表面瑕疵，實作結果顯示，預訓練VGG16模型的測試準確率(對測試資料)可達99.0%。(目前排行榜上最高分為99.8%)
-若使用更新的模型架構(如ResNet、DenseNet)，或許能進一步提升測試準確率，有心追求名次的人可自行嘗試。
+本專案目的為藉由AOI影像訓練深度學習模型辨識產品表面瑕疵，使用框架為Pytorch。實作結果顯示，預訓練VGG16模型的測試準確已達到99.0%。(目前排行榜上最高分為99.9%)
+若使用更新的模型架構(如ResNet、DenseNet)，相信能進一步提升測試準確率，有心追求更高名次的人可自行嘗試。
+
+## 軟硬體配置
+
+- CPU： Intel-8700 (6-cores)
+- GPU： GTX1080Ti (11 GB)
+- Memory： 64 GB
+- OS： Window10
+
+- Pytorch 1.3
+- Numpy 1.16.2
 
 ## 影像資料來源
 
@@ -26,17 +36,6 @@
 
 <img src="https://github.com/hcygeorge/aoi_defect_detection/blob/master/aoi_example.png" alt="alt text" width="360" height="300">
 
-
-
-## 軟硬體配置
-
-- CPU： Intel-8700 (6-cores)
-- GPU： GTX1080Ti (11 GB)
-- Memory： 64 GB(其實用不到這麼多)
-- OS： Window10
-
-- Pytorch 1.3
-- Numpy 1.16.2
 
 ## 影像前處理
 
