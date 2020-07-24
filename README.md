@@ -65,7 +65,7 @@
 
 ## 參考
 
-Aidea平台
+Aidea平台  
 https://aidea-web.tw/topic/a49e3f76-69c9-4a4a-bcfc-c882840b3f27  
 LeNet5文獻  
 http://yann.lecun.com/exdb/lenet/   
