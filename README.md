@@ -23,7 +23,7 @@
 如下圖所示，除了Normal外，其餘皆屬於瑕疵影像，可觀察到Horizontal Defect外觀與Normal較為接近，可能是相對難以辨識的瑕疵種類。
 
 
-![]https://github.com/hcygeorge/aoi_defect_detection/blob/master/aoi_example.png =250x250)
+![image]https://github.com/hcygeorge/aoi_defect_detection/blob/master/aoi_example.png=250x250)
 
 
 
