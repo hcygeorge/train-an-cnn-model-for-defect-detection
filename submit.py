@@ -9,7 +9,7 @@ import torch.nn as nn
 import torchvision
 from torchvision import datasets, transforms
 from load_data import CreateList, CustomDataset
-from models import VGG, LeNet5, BCNN
+from models import VGG, LeNet5
 
 #%% Paths
 dir_img_test = 'C:/Dataset/AOI/test_images/'
